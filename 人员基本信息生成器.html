@@ -3673,17 +3673,19 @@
             cell_addr.innerHTML = r_.split("|")[1] + " " + a_;
             area_addr.value += r_.split("|")[1] + " " + a_ + "\n";
 
-            line.append(cell_id);
-            line.append(cell_name);
-            line.append(cell_gender);
-            line.append(cell_birth);
-            line.append(cell_idcard);
-            line.append(cell_mobile);
-            line.append(cell_bank);
-            line.append(cell_card);
-            line.append(cell_addr);
+            // 使用 appendChild 代替 append
+            // 解决 IE 在 DOM 未加载完成时，提示“对象不支持 append 属性或方法”的问题
+            line.appendChild(cell_id);
+            line.appendChild(cell_name);
+            line.appendChild(cell_gender);
+            line.appendChild(cell_birth);
+            line.appendChild(cell_idcard);
+            line.appendChild(cell_mobile);
+            line.appendChild(cell_bank);
+            line.appendChild(cell_card);
+            line.appendChild(cell_addr);
 
-            result.append(line);
+            result.appendChild(line);
 
             c_.log(i+1, n_, (g_ % 2 == 0) ? "女" : "男", d_, i_, m_, r_.split("|")[1].replace(/\s/g, "") + a_, b_.split("|")[0], b_.split("|")[1]);
         }
