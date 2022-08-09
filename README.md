@@ -6,7 +6,8 @@
 
 - 可以随机生成姓名、性别、身份证号码、手机号码、银行卡号、住址等人员基本信息
 
-![预览图](https://user-images.githubusercontent.com/50565040/179655095-8b57d735-69f6-4b69-82d5-8c860fd0097f.jpg)
+![预览图](https://user-images.githubusercontent.com/50565040/183583040-f46ba121-2e42-449f-aefb-93fffe7604c5.png)
+
 
 ### 更新记录
 - [220729] 增加结果内容复制到剪贴板的功能（双击标题复制）
