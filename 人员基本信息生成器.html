@@ -56,6 +56,7 @@
 
     input[type="radio"],
     input[type="checkbox"] {
+        margin-right: 0.25em;
         vertical-align: middle;
     }
 
@@ -306,7 +307,7 @@
                 <select id="region_city" name="region_city" onchange="region_refresh(this);" ></select>
                 <select id="region_area" name="region_area" onchange="region_refresh(this);" ></select>
             </span>
-            <span><input type="checkbox" id="region_detail" name="region_detail" onclick="region_init($('region_area').value); region_refresh($('region_area'))" />详情</span>
+            <span><input type="checkbox" id="region_detail" name="region_detail" onclick="region_init($('region_area').value); region_refresh($('region_area'))" /><label for="region_detail"><small>区划沿革详情</small></label></span>
         </div>
         <blockquote id="blockquote_region" cite="" style="display:none">
             <small><i>
