@@ -1,6 +1,6 @@
 # Chinese Personal Info Generater
 
-## 随机人名信息生成器
+## 中文人名信息随机生成器
 
 > 自己使用的随机数据生成器（HTML版）
 
