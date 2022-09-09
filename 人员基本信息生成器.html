@@ -2517,7 +2517,7 @@
             "330300|温州市", 
                 "330301×|东城区【浙政发〔1983〕130号：撤销温州市东城区、南城区、西城区，合并设立城区】", 
                 "330302|鹿城区", 
-				"330302×|城区【浙政发〔1984〕269号：温州市城区改名为鹿城区】", 
+                "330302×|城区【浙政发〔1984〕269号：温州市城区改名为鹿城区】", 
                 "330302×|南城区【浙政发〔1983〕130号：撤销温州市东城区、南城区、西城区，合并设立城区】", 
                 "330303×|西城区【浙政发〔1983〕130号：撤销温州市东城区、南城区、西城区，合并设立城区】", 
                 "330303|龙湾区【浙政发〔1984〕269号：增设温州市龙湾区】", 
@@ -7801,12 +7801,16 @@
         // 确定区划代码随机范围
         for (var i=0; i<region_array.length; i++) {
             if (region_array[i].substring(4, 6) != "00" ||            // 最后2位为“00”，表示地市级，不作为随机范围。但
-                    region_array[i].substring(0, 6) == "441100" ||    // 三亚（1988年前归属广东省）
+                    region_array[i].substring(0, 6) == "420400" ||    // 沙市（已撤销）
+                    region_array[i].substring(0, 6) == "441100" ||    // 三亚（已撤销）
                     region_array[i].substring(0, 6) == "441900" ||    // 东莞
                     region_array[i].substring(0, 6) == "442000" ||    // 中山
                     // region_array[i].substring(0, 6) == "460300" || // 三沙（三沙市已设西沙区、南沙区）
                     region_array[i].substring(0, 6) == "460400" ||    // 儋州
-                    region_array[i].substring(0, 6) == "620200") {    // 嘉峪关 等“全国五个不设县的市【直筒子市）”除外
+                    region_array[i].substring(0, 6) == "530200" ||    // 东川（已撤销）
+                    region_array[i].substring(0, 6) == "620200" ||    // 嘉峪关
+                    region_array[i].substring(0, 6) == "650300"       // 石河子市（已撤销）
+                    ) {    // 等“全国五个不设县的市（直筒子市）”除外
                     // 省
                 if ((region_value.substring(2, 6) == "0000" && region_value.substring(0, 2) == region_array[i].substring(0, 2)) || 
                     // 市
@@ -7828,7 +7832,7 @@
         var idx_city = function (e) { return new RegExp("^" + res.split("|")[0].substring(0, 4) + "00", "g").test(e) };
         var idx_area = function (e) { return new RegExp("^" + res.split("|")[0], "g").test(e) };
 
-        var detail = region_array[region_array.findIndex(idx_prov)].split("|")[1];
+        var detail = region_array[region_array.findIndex(idx_prov)].split("|")[1].split("【")[0];
         // 省级。自治区名用简称
         detail = detail.replace(/[壮回族维吾尔]|(自治区)/g, "").replace(/(特别行政区)/g, "");
 
@@ -7841,17 +7845,21 @@
                 res.split("|")[0].substring(0, 1) != "7" && 
                 res.split("|")[0].substring(0, 1) != "8" && 
                 res.split("|")[0].substring(2, 4) != "90" && 
+                res.split("|")[0].substring(0, 4) != "4600" && 
                 (res.split("|")[0].substring(2, 4) <= "20" || res.split("|")[0].substring(2, 4) > "50")) {
             detail += " " + (region_array[region_array.findIndex(idx_city)].split("|")[1]).split("【")[0];
         }
 
-        // 县市级。“全国五个不设县的市【直筒子市）”，不显示县市级
-        if (res.split("|")[0].substring(0, 6) != "441100" &&    // 三亚（1988年前归属广东省）
+        // 县市级。“全国五个不设县的市（直筒子市）”，不显示县市级
+        if (res.split("|")[0].substring(0, 6) != "420400" &&        // 沙市（已撤销）
+                res.split("|")[0].substring(0, 6) != "441100" &&    // 三亚（已撤销）
                 res.split("|")[0].substring(0, 6) != "441900" &&    // 东莞
                 res.split("|")[0].substring(0, 6) != "442000" &&    // 中山
                 // res.split("|")[0].substring(0, 6) != "460300" && // 三沙（三沙市已设西沙区、南沙区）
                 res.split("|")[0].substring(0, 6) != "460400" &&    // 儋州
-                res.split("|")[0].substring(0, 6) != "620200") {    // 嘉峪关
+                res.split("|")[0].substring(0, 6) != "530200" &&    // 东川（已撤销）
+                res.split("|")[0].substring(0, 6) != "620200" &&    // 嘉峪关
+                res.split("|")[0].substring(0, 6) != "650300") {    // 石河子市（已撤销）
             detail += " " + (region_array[region_array.findIndex(idx_area)].split("|")[1]).split("【")[0];
         }
 
