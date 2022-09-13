@@ -285,6 +285,7 @@
             <select id="region_province" name="region_province" onchange="region_refresh(this);" ></select>
             <select id="region_city" name="region_city" onchange="region_refresh(this);" ></select>
             <select id="region_area" name="region_area" onchange="region_refresh(this);" ></select>
+            <input type="checkbox" id="region_last" name="region_last" checked="checked" onclick="region_init($('region_area').value); region_refresh($('region_area'))" /><label for="region_last">只显示最新区划</label>
             <input type="checkbox" id="region_detail" name="region_detail" onclick="region_init($('region_area').value); region_refresh($('region_area'))" /><label for="region_detail">显示沿革详情</label>
         </div>
         <div id="more_region" class="item extra">
@@ -451,7 +452,7 @@
      * 省市数据初始化（1982年-2021年，从民政部下载的行政区划数据，去重后计6936条）
      * （由于GB/T 2260-80版勘误较多，1982版作了较大修正。故行政区划数据取1982年至今的数据）
      */
-    var region_array = new Array( 
+    var region_array0 = new Array( 
         "110000|北京市", 
             "110100|（市辖区）", 
                 "110101|东城区", 
@@ -7463,6 +7464,8 @@
                 "820401？|路氹填海区" 
     );
 
+    var region_array = new Array();
+
     var obj_prov = $("region_province"), 
         obj_city = $("region_city"), 
         obj_area = $("region_area");
@@ -7475,6 +7478,23 @@
         var code = str || "";
 
         var show_detail = $("region_detail").checked;
+
+        var show_last = $("region_last").checked;
+
+        if (show_last == true) {
+            var region_last = new Array();
+            for (var i=0; i<region_array0.length; i++) {
+                if (region_array0[i].indexOf("×") > 0) {
+                    continue;
+                } else {
+                    region_last.push(region_array0[i]);
+                }
+            }
+
+            region_array = region_last;
+        } else {
+            region_array = region_array0;
+        }
 
         for (var i=0, j1=1, j2=1, j3=1; i<region_array.length; i++) {
             var opt_text = (show_detail) ? region_array[i] : region_array[i].split("【")[0];
