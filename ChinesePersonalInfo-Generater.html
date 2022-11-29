@@ -7710,20 +7710,20 @@
             cell_card.setAttribute("name", "p_card");
             cell_card.innerHTML = b_.split("|")[1];
 
-            var car_city = r_.split("|")[3];
+            var car_city = r_.split("|")[3] + '·';
             var car_num = c_;
             if (car_city.substring(0, 1) == '港' || car_city.substring(0, 1) == '澳') {
                 car_num = c_.substring(0, car_num.length - 1) + car_city.substring(0, 1);
-                car_city = '粤Z';
+                car_city = '粤Z' + '·';
             }
 
             if (car_city.substring(0, 1) == '台') {
-                car_city = '-暂缺';
+                car_city = '（暂缺）';
                 car_num = '';
             }
             cell_car = document.createElement("div");
             cell_car.setAttribute("name", "p_car");
-            cell_car.innerHTML = car_city + '-' + car_num;
+            cell_car.innerHTML = car_city + car_num;
 
             cell_addr = document.createElement("div");
             cell_addr.setAttribute("name", "p_addr");
@@ -8253,7 +8253,7 @@
         // 车牌号
         var card = '';
 
-        if (format.length < 1) {
+        if (format.length <= 1) {
             format = 'A00A0';
         }
 
@@ -8288,7 +8288,7 @@
             idcard_new.innerHTML = "身份证校验码正确";
         }
     };
-    
+
     /*
      * 校验身份证、电话号码重复并高亮
      */
@@ -8310,7 +8310,7 @@
             }
         }
     };
-    
+
     /*
      * 结果复制到剪贴板
      */
